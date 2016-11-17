@@ -145,6 +145,7 @@ namespace WPFMediaKit.DirectShow.MediaPlayers
                 {
                     case EventCode.Complete:
                         MediaPosition = 0;
+                        InvokeMediaEnded(null);
                         break;
                 }
             }
