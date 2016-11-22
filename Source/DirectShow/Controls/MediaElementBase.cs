@@ -16,11 +16,6 @@ namespace WPFMediaKit.DirectShow.Controls
         private Window m_currentWindow;
         private bool m_windowHooked;
 
-        ~MediaElementBase()
-        {
-            
-        }
-
         #region Routed Events
         #region MediaOpened
 
@@ -118,7 +113,7 @@ namespace WPFMediaKit.DirectShow.Controls
         public static readonly DependencyProperty VolumeProperty =
             DependencyProperty.Register("Volume", typeof(double), typeof(MediaElementBase),
                 new FrameworkPropertyMetadata(1.0d,
-                    new PropertyChangedCallback(OnVolumeChanged)));
+                    OnVolumeChanged));
 
         /// <summary>
         /// Gets or sets the audio volume.  Specifies the volume, as a 
@@ -151,7 +146,7 @@ namespace WPFMediaKit.DirectShow.Controls
         public static readonly DependencyProperty BalanceProperty =
             DependencyProperty.Register("Balance", typeof(double), typeof(MediaElementBase),
                 new FrameworkPropertyMetadata(0d,
-                    new PropertyChangedCallback(OnBalanceChanged)));
+                    OnBalanceChanged));
 
         /// <summary>
         /// Gets or sets the balance on the audio.
@@ -460,6 +455,9 @@ namespace WPFMediaKit.DirectShow.Controls
 
             m_currentWindow.Closed -= WindowOwnerClosed;
             m_currentWindow = null;
+
+
+            Unloaded -= MediaElementBaseUnloaded;
         }
 
         /// <summary>
@@ -476,6 +474,8 @@ namespace WPFMediaKit.DirectShow.Controls
             }
 
             OnLoadedOverride();
+
+            Loaded -= MediaElementBaseLoaded;
         }
 
         /// <summary>
@@ -590,6 +590,15 @@ namespace WPFMediaKit.DirectShow.Controls
                 }));
             
             SetIsPlaying(false);
+
+            MediaPlayerBase.MediaOpened -= OnMediaPlayerOpenedPrivate;
+            MediaPlayerBase.MediaClosed -= OnMediaPlayerClosedPrivate;
+            MediaPlayerBase.MediaFailed -= OnMediaPlayerFailedPrivate;
+            MediaPlayerBase.MediaEnded -= OnMediaPlayerEndedPrivate;
+
+            /* These events fire when we get new D3Dsurfaces or frames */
+            MediaPlayerBase.NewAllocatorFrame -= OnMediaPlayerNewAllocatorFramePrivate;
+            MediaPlayerBase.NewAllocatorSurface -= OnMediaPlayerNewAllocatorSurfacePrivate;
         }
 
         /// <summary>
