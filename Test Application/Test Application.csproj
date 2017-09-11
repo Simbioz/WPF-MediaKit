@@ -91,15 +91,15 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Source\WPF MediaKit.csproj">
-      <Project>{73154957-3d91-48da-8068-d425b523ed93}</Project>
-      <Name>WPF MediaKit</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="EVRPresenter32.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Source\WPF MediaKit.csproj">
+      <Project>{73154957-3D91-48DA-8068-D425B523ED93}</Project>
+      <Name>WPF MediaKit</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -1,0 +1,36 @@
+﻿<Window x:Class="VideoPlayerTest.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:VideoPlayerTest"
+        xmlns:Controls="clr-namespace:WPFMediaKit.DirectShow.Controls;assembly=WPFMediaKit"
+        xmlns:System="clr-namespace:System;assembly=mscorlib"
+        xmlns:Wpf="clr-namespace:Meta.Vlc.Wpf;assembly=Meta.Vlc.Wpf"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="350" Width="525">
+    <Grid>
+        <Grid.Resources>
+            <x:Array Type="{x:Type System:String}" x:Key="VlcOptions">
+                <System:String>-I</System:String>
+                <System:String>--dummy-quiet</System:String>
+                <System:String>--ignore-config</System:String>
+                <System:String>--no-video-title</System:String>
+                <System:String>--no-sub-autodetect-file</System:String>
+            </x:Array>
+        </Grid.Resources>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal">
+            <Button x:Name="btnOpen" Click="btnOpen_Click" Content="Open..."  Padding="4" Margin="4"></Button>
+            <Button x:Name="btnStop" Click="btnStop_Click" Content="Stop" Padding="4" Margin="4"></Button>
+        </StackPanel>
+        <!--<Controls:MediaUriElement x:Name="mediaUriElement" Grid.Row="1" Margin="4" VideoRenderer="EnhancedVideoRenderer">
+            
+        </Controls:MediaUriElement>-->
+        <Wpf:VlcPlayer x:Name="mediaUriElement" VlcOption="{StaticResource VlcOptions}"  LibVlcPath="..\..\libvlc"   Grid.Row="1" Margin="4" />
+    </Grid>
+</Window>
+

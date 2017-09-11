@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Test_Application"
-        xmlns:controls="clr-namespace:WPFMediaKit.DirectShow.Controls;assembly=WPFMediaKit"
+        xmlns:test="clr-namespace:WPFMediaKit.DirectShow.Controls;assembly=WPFMediaKit"
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
     <Grid>
@@ -16,6 +16,6 @@
         <Button x:Name="btnOpen" Click="btnOpen_Click" Content="Open..."  Padding="4" Margin="4"></Button>
         <Button x:Name="btnStop" Click="btnStop_Click" Content="Stop" Padding="4" Margin="4"></Button>
         </StackPanel>
-        <controls:MediaUriElement x:Name="mediaUriElement" Grid.Row="1" Margin="4"></controls:MediaUriElement>
+        <test:MediaUriElement x:Name="mediaUriElement" Grid.Row="1" Margin="4"></test:MediaUriElement>
     </Grid>
 </Window>
